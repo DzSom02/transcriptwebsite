@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Text-Based Blog</title>
+    <!-- Add the Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            padding-top: 40px; /* Adjust the value as needed to add the desired space */
+            /* background-image: url('img/background.jpg'); */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* background-color: #d0d0d0;; */
+        }
+
+        /* Semi-transparent overlay */
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('img/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.2; /* Set the transparency here */
+            z-index: -1;
+        }
+        main {
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #555;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #777;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.6rem;
+            color: #888;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h5 {
+            font-size: 1.4rem;
+            color: #999;
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h6 {
+            font-size: 1.2rem;
+            color: #aaa;
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }        
+        
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Updated Blockquote Styles */
+        blockquote {
+            position: relative;
+            background-color: #f9f9f9;
+            border-left: 4px solid #333;
+            padding: 15px 40px 15px 60px; /* Add left padding for the SVG */
+            margin: 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            margin-bottom: 0; /* Remove margin from the paragraph inside blockquote */
+        }
+
+        blockquote footer {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        /* SVG Styles */
+        .dharma-chakra {
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            fill: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #333;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand:hover {
+            cursor: pointer;
+        }
+
+        .nav-item {
+            margin-right: 1rem;
+        }
+
+        /* Sidebar Styles */
+
+        /* Additional Styles for the Side Menu */
+              .sidebar {
+            background-color: #f8f9fa; /* Light gray background */
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .nav-sidebar .nav-item .nav-link {
+            color: #6c757d; /* Gray text color for menu items */
+            font-weight: bold;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+            padding: 8px 20px; /* Increase spacing between elements */
+            position: relative;
+        }
+
+        .nav-sidebar .nav-item .nav-link::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #6c757d; /* Gray line under each element */
+            opacity: 0.5; /* Adjust the opacity to control visibility */
+            position: absolute;
+            bottom: -4px; /* Adjust the value to control the position of the line */
+            left: 0;
+        }
+
+        .nav-sidebar .nav-item .nav-link:hover::after {
+            opacity: 1; /* Show the line on hover */
+        }
+
+        .position-sticky {
+            position: sticky;
+            top: 20px; /* Adjust this value to set the sidebar's sticky position */
+        }
+
+        /* Custom Styles for Featured Post Links */
+        .featured-post {
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .featured-post h6 {
+            margin-bottom: 5px;
+        }
+
+        .featured-post p {
+            margin-bottom: 5px;
+        }
+
+        /* Styles for Date and Author */
+        .featured-post .post-date {
+            font-size: 14px;
+            color: #888;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .featured-post .post-date svg {
+            margin-right: 5px;
+        }
+
+        .featured-post .post-author {
+            font-size: 14px;
+            color: #555;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .featured-post .post-author svg {
+            margin-right: 5px;
+        }        .position-sticky {
+            position: sticky;
+            top: 20px; /* Adjust this value to set the sidebar's sticky position */
+        }
+
+        /* Blog Post Styles */
+        .blog-post {
+            margin-bottom: 3rem;
+        }
+
+        .blog-post-meta {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Video Embed Styles */
+        .embed-responsive {
+            margin-bottom: 1.5rem;
+            border: 1px solid #ccc;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Media Query for Smaller Screens */
+        @media (max-width: 767.98px) {
+            .navbar-collapse {
+                background-color: #333;
+            }
+
+            .navbar-nav {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .sidebar {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+        }
+        /* Loading Animation Styles */
+        #loadingOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: 9999; /* Ensure it's above other elements */
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loadingAnimation {
+            display: inline-block;
+            width: 64px;
+            height: 64px;
+        }
+
+        .lds-spinner {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+
+        .lds-spinner div {
+            transform-origin: 32px 32px;
+            animation: lds-spinner 1.2s linear infinite;
+        }
+
+        .lds-spinner div:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 3px;
+            left: 29px;
+            width: 5px;
+            height: 14px;
+            border-radius: 20%;
+            background: #000;
+        }
+
+        .lds-spinner div:nth-child(1) {
+            transform: rotate(0deg);
+            animation-delay: -1.1s;
+        }
+
+        .lds-spinner div:nth-child(2) {
+            transform: rotate(30deg);
+            animation-delay: -1s;
+        }
+
+        .lds-spinner div:nth-child(3) {
+            transform: rotate(60deg);
+            animation-delay: -0.9s;
+        }
+
+        .lds-spinner div:nth-child(4) {
+            transform: rotate(90deg);
+            animation-delay: -0.8s;
+        }
+
+        .lds-spinner div:nth-child(5) {
+            transform: rotate(120deg);
+            animation-delay: -0.7s;
+        }
+
+        .lds-spinner div:nth-child(6) {
+            transform: rotate(150deg);
+            animation-delay: -0.6s;
+        }
+
+        .lds-spinner div:nth-child(7) {
+            transform: rotate(180deg);
+            animation-delay: -0.5s;
+        }
+
+        .lds-spinner div:nth-child(8) {
+            transform: rotate(210deg);
+            animation-delay: -0.4s;
+        }
+
+        .lds-spinner div:nth-child(9) {
+            transform: rotate(240deg);
+            animation-delay: -0.3s;
+        }
+
+        .lds-spinner div:nth-child(10) {
+            transform: rotate(270deg);
+            animation-delay: -0.2s;
+        }
+
+        .lds-spinner div:nth-child(11) {
+            transform: rotate(300deg);
+            animation-delay: -0.1s;
+        }
+
+        .lds-spinner div:nth-child(12) {
+            transform: rotate(330deg);
+            animation-delay: 0s;
+        }
+
+        @keyframes lds-spinner {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        .element-to-hover:hover {
+            cursor: pointer;
+        }
+        /* Styles for the dialog container */
+        .person1 {
+          color: #1E90FF; /* Soft blue color for person 1 */
+        }
+        
+        .person2 {
+          color: #008000; /* Soft green color for person 2 */
+        }
+        
+        .person-name {
+          font-weight: bold;
+          margin-right: 5px;
+        }
+        
+        .person-message {
+          margin-left: 20px; /* Indent the message to separate it from the name */
+        }
+
+        /* Center the audio */
+        .audio-container {
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div id="loadingOverlay">
+        <div class="lds-spinner" id="loadingAnimation">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" onclick="loadPost('/posts/index.html')" href="#" style="display: flex; align-items: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Dharma_Wheel.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
+                <span class="ml-1">My Blog</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav"> <!-- Change justify-content-end to move the menu to the right -->
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Blog Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Category 1</a>
+                            <a class="dropdown-item" href="#">Category 2</a>
+                            <a class="dropdown-item" href="#">Category 3</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Blog Content -->
+            <main id="blogContent" class="col-md-9">
+                            </main>
+
+            <!-- Side Menu -->
+            <nav class="col-md-3 d-none d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <h5 class="text-center">Featured Posts</h5>
+                    <div class="featured-post" onclick="loadPost('/posts/post1.html')">
+                        <h6><a href="#">Sample Post 1</a></h6>
+                        <p>Short summary of the featured post goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p class="post-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 4a4 4 0 1 0-8 0 4 4 0 0 0 8 0zm-.4 3a5.49 5.49 0 0 0-5.2 0 6 6 0 0 1-5.6 0 5.49 5.49 0 0 0-5.2 0 4.5 4.5 0 0 0-1.5 3 1 1 0 0 0 .9 1.5h14a1 1 0 0 0 .9-1.5 4.5 4.5 0 0 0-1.5-3zM2.59 12a5.43 5.43 0 0 1 5.5 0 6.09 6.09 0 0 1 1.8 1.2h-9.8a6.1 6.1 0 0 1 1.8-1.2z"/>
+                            </svg>
+                            John Doe | 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                <path d="M2 2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1H2V2zm0 2V2h12v2H2zm0 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2V6zm2 3V7h1v4H4zm2 0V7h1v4H6zm2 0V7h1v4H8zm2 0V7h1v4h-1zm2-6v1H2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v1h2V4a2 2 0 0 1-2-2H4zm8 8v3H4V8h12z"/>
+                            </svg>
+                            January 10, 2023
+                        </p>
+                    </div>
+                    <div class="featured-post" onclick="loadPost('/post2.html')">
+                        <h6><a href="#">Sample Post 2</a></h6>
+                        <p>Short summary of another featured post goes here. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                        <p class="post-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 4a4 4 0 1 0-8 0 4 4 0 0 0 8 0zm-.4 3a5.49 5.49 0 0 0-5.2 0 6 6 0 0 1-5.6 0 5.49 5.49 0 0 0-5.2 0 4.5 4.5 0 0 0-1.5 3 1 1 0 0 0 .9 1.5h14a1 1 0 0 0 .9-1.5 4.5 4.5 0 0 0-1.5-3zM2.59 12a5.43 5.43 0 0 1 5.5 0 6.09 6.09 0 0 1 1.8 1.2h-9.8a6.1 6.1 0 0 1 1.8-1.2z"/>
+                            </svg>
+                            Jane Smith | 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                <path d="M2 2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1H2V2zm0 2V2h12v2H2zm0 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2V6zm2 3V7h1v4H4zm2 0V7h1v4H6zm2 0V7h1v4H8zm2 0V7h1v4h-1zm2-6v1H2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v1h2V4a2 2 0 0 1-2-2H4zm8 8v3H4V8h12z"/>
+                            </svg>
+                            February 15, 2023
+                        </p>
+                    </div>
+                    <!-- Add more featured posts here -->
+                </div>
+            </nav>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function getQueryParams() {
+            const queryParams = new URLSearchParams(window.location.search);
+            return queryParams.get('post');
+        }
+
+        async function loadPost(path) {
+            // Display the loading overlay before fetching the content
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+
+            fetchPostContent(path)
+                .then(content => {
+                    const blogContent = document.getElementById('blogContent');
+                    blogContent.innerHTML = content;
+                    // Hide the loading overlay once the content is loaded
+                    loadingOverlay.style.display = 'none';
+
+                    // Update the URL with the current post as a query parameter
+                    window.history.replaceState(null, null, `?post=${encodeURIComponent(path)}`);
+                })
+                .catch(error => {
+                    console.error('Error loading post content:', error);
+                    // Hide the loading overlay in case of an error
+                    loadingOverlay.style.display = 'none';
+                });
+        }
+        function initialize() {
+            // Get the 'post' query parameter from the URL
+            const postParam = getQueryParams();
+
+            if (postParam) {
+                // Load the post specified in the URL parameter
+                loadPost(decodeURIComponent(postParam));
+            } else {
+                // Load the default post or homepage
+                loadPost('/posts/index.html'); // Change this to your default post URL
+            }
+        }
+
+    function fetchPostContent(path) {
+        // Make a GET request to the server to fetch the content of the selected postPath
+        // Replace 'your-server-url' with the actual URL of your server
+        return fetch(`${path}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            });
+    }
+    // Call the initialize function when the DOM is ready
+    document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+    <!-- Add the Bootstrap JS and Popper.js (required for Bootstrap dropdowns, modals, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
