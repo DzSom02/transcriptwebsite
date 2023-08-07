@@ -1,0 +1,401 @@
+/* Global Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    padding-top: 40px; /* Adjust the value as needed to add the desired space */
+    /* background-image: url('img/background.jpg'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-color: #d0d0d0;; */
+}
+
+/* Semi-transparent overlay */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.2; /* Set the transparency here */
+    z-index: -1;
+}
+main {
+    background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #555;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+    color: #777;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h4 {
+    font-size: 1.6rem;
+    color: #888;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h5 {
+    font-size: 1.4rem;
+    color: #999;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+h6 {
+    font-size: 1.2rem;
+    color: #aaa;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}        
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Updated Blockquote Styles */
+blockquote {
+    position: relative;
+    background-color: #f9f9f9;
+    border-left: 4px solid #333;
+    padding: 15px 40px 15px 60px; /* Add left padding for the SVG */
+    margin: 0;
+    font-style: italic;
+}
+
+blockquote p {
+    margin-bottom: 0; /* Remove margin from the paragraph inside blockquote */
+}
+
+blockquote footer {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #666;
+}
+
+/* SVG Styles */
+.dharma-chakra {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    fill: #333;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.navbar-brand:hover {
+    cursor: pointer;
+}
+
+.nav-item {
+    margin-right: 1rem;
+}
+
+/* Sidebar Styles */
+
+/* Additional Styles for the Side Menu */
+      .sidebar {
+    background-color: #f8f9fa; /* Light gray background */
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.nav-sidebar .nav-item .nav-link {
+    color: #6c757d; /* Gray text color for menu items */
+    font-weight: bold;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+    padding: 8px 20px; /* Increase spacing between elements */
+    position: relative;
+}
+
+.nav-sidebar .nav-item .nav-link::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #6c757d; /* Gray line under each element */
+    opacity: 0.5; /* Adjust the opacity to control visibility */
+    position: absolute;
+    bottom: -4px; /* Adjust the value to control the position of the line */
+    left: 0;
+}
+
+.nav-sidebar .nav-item .nav-link:hover::after {
+    opacity: 1; /* Show the line on hover */
+}
+
+.position-sticky {
+    position: sticky;
+    top: 20px; /* Adjust this value to set the sidebar's sticky position */
+}
+
+/* Custom Styles for Featured Post Links */
+.featured-post {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.featured-post h6 {
+    margin-bottom: 5px;
+}
+
+.featured-post p {
+    margin-bottom: 5px;
+}
+
+/* Styles for Date and Author */
+.featured-post .post-date {
+    font-size: 14px;
+    color: #888;
+    display: inline-flex;
+    align-items: center;
+}
+
+.featured-post .post-date svg {
+    margin-right: 5px;
+}
+
+.featured-post .post-author {
+    font-size: 14px;
+    color: #555;
+    display: inline-flex;
+    align-items: center;
+}
+
+.featured-post .post-author svg {
+    margin-right: 5px;
+}        .position-sticky {
+    position: sticky;
+    top: 20px; /* Adjust this value to set the sidebar's sticky position */
+}
+
+/* Blog Post Styles */
+.blog-post {
+    margin-bottom: 3rem;
+}
+
+.blog-post-meta {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Video Embed Styles */
+.embed-responsive {
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 767.98px) {
+    .navbar-collapse {
+        background-color: #333;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .sidebar {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+/* Loading Animation Styles */
+#loadingOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 9999; /* Ensure it's above other elements */
+    justify-content: center;
+    align-items: center;
+}
+
+#loadingAnimation {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+}
+
+.lds-spinner {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.lds-spinner div {
+    transform-origin: 32px 32px;
+    animation: lds-spinner 1.2s linear infinite;
+}
+
+.lds-spinner div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 29px;
+    width: 5px;
+    height: 14px;
+    border-radius: 20%;
+    background: #000;
+}
+
+.lds-spinner div:nth-child(1) {
+    transform: rotate(0deg);
+    animation-delay: -1.1s;
+}
+
+.lds-spinner div:nth-child(2) {
+    transform: rotate(30deg);
+    animation-delay: -1s;
+}
+
+.lds-spinner div:nth-child(3) {
+    transform: rotate(60deg);
+    animation-delay: -0.9s;
+}
+
+.lds-spinner div:nth-child(4) {
+    transform: rotate(90deg);
+    animation-delay: -0.8s;
+}
+
+.lds-spinner div:nth-child(5) {
+    transform: rotate(120deg);
+    animation-delay: -0.7s;
+}
+
+.lds-spinner div:nth-child(6) {
+    transform: rotate(150deg);
+    animation-delay: -0.6s;
+}
+
+.lds-spinner div:nth-child(7) {
+    transform: rotate(180deg);
+    animation-delay: -0.5s;
+}
+
+.lds-spinner div:nth-child(8) {
+    transform: rotate(210deg);
+    animation-delay: -0.4s;
+}
+
+.lds-spinner div:nth-child(9) {
+    transform: rotate(240deg);
+    animation-delay: -0.3s;
+}
+
+.lds-spinner div:nth-child(10) {
+    transform: rotate(270deg);
+    animation-delay: -0.2s;
+}
+
+.lds-spinner div:nth-child(11) {
+    transform: rotate(300deg);
+    animation-delay: -0.1s;
+}
+
+.lds-spinner div:nth-child(12) {
+    transform: rotate(330deg);
+    animation-delay: 0s;
+}
+
+@keyframes lds-spinner {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.element-to-hover:hover {
+    cursor: pointer;
+}
+/* Styles for the dialog container */
+.person1 {
+  color: #1E90FF; /* Soft blue color for person 1 */
+}
+
+.person2 {
+  color: #008000; /* Soft green color for person 2 */
+}
+
+.person-name {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.person-message {
+  margin-left: 20px; /* Indent the message to separate it from the name */
+}
+
+/* Center the audio */
+.audio-container {
+    display: flex;
+    justify-content: center;
+}
+
+
