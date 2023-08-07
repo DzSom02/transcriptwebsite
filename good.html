@@ -4,112 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Text-Based Blog</title>
-    <!-- Add the Bootstrap CSS link here -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Loading Animation -->
-    <div id="loadingOverlay">
-        <div class="lds-spinner" id="loadingAnimation">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-    <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" onclick="loadPost('/posts/index.html')" href="#" style="display: flex; align-items: center;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Dharma_Wheel.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
-                <span class="ml-1">My Blog</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav"> <!-- Change justify-content-end to move the menu to the right -->
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Blog Categories
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Category 1</a>
-                            <a class="dropdown-item" href="#">Category 2</a>
-                            <a class="dropdown-item" href="#">Category 3</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    </header>
+    <div id="loadingOverlay" w3-include-html="core/loading.html"></div>
+    <header w3-include-html="core/header.html"></header>
     <div class="container mt-4">
         <div class="row">
             <!-- Blog Content -->
-            <main id="blogContent" class="col-md-9">
-            </main>
-
+            <main id="blogContent" class="col-md-9"></main>
             <!-- Side Menu -->
-            <nav class="col-md-3 d-none d-md-block bg-light sidebar">
-                <div class="position-sticky">
-                    <h5 class="text-center">Featured Posts</h5>
-                    <div class="featured-post" onclick="loadPost('/posts/post1.html')">
-                        <h6><a href="#">Sample Post 1</a></h6>
-                        <p>Short summary of the featured post goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="post-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                                <path d="M8 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 4a4 4 0 1 0-8 0 4 4 0 0 0 8 0zm-.4 3a5.49 5.49 0 0 0-5.2 0 6 6 0 0 1-5.6 0 5.49 5.49 0 0 0-5.2 0 4.5 4.5 0 0 0-1.5 3 1 1 0 0 0 .9 1.5h14a1 1 0 0 0 .9-1.5 4.5 4.5 0 0 0-1.5-3zM2.59 12a5.43 5.43 0 0 1 5.5 0 6.09 6.09 0 0 1 1.8 1.2h-9.8a6.1 6.1 0 0 1 1.8-1.2z"/>
-                            </svg>
-                            John Doe | 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                <path d="M2 2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1H2V2zm0 2V2h12v2H2zm0 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2V6zm2 3V7h1v4H4zm2 0V7h1v4H6zm2 0V7h1v4H8zm2 0V7h1v4h-1zm2-6v1H2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v1h2V4a2 2 0 0 1-2-2H4zm8 8v3H4V8h12z"/>
-                            </svg>
-                            January 10, 2023
-                        </p>
-                    </div>
-                    <div class="featured-post" onclick="loadPost('/post2.html')">
-                        <h6><a href="#">Sample Post 2</a></h6>
-                        <p>Short summary of another featured post goes here. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                        <p class="post-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                                <path d="M8 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 4a4 4 0 1 0-8 0 4 4 0 0 0 8 0zm-.4 3a5.49 5.49 0 0 0-5.2 0 6 6 0 0 1-5.6 0 5.49 5.49 0 0 0-5.2 0 4.5 4.5 0 0 0-1.5 3 1 1 0 0 0 .9 1.5h14a1 1 0 0 0 .9-1.5 4.5 4.5 0 0 0-1.5-3zM2.59 12a5.43 5.43 0 0 1 5.5 0 6.09 6.09 0 0 1 1.8 1.2h-9.8a6.1 6.1 0 0 1 1.8-1.2z"/>
-                            </svg>
-                            Jane Smith | 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                <path d="M2 2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1H2V2zm0 2V2h12v2H2zm0 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2V6zm2 3V7h1v4H4zm2 0V7h1v4H6zm2 0V7h1v4H8zm2 0V7h1v4h-1zm2-6v1H2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h2V2a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v1h2V4a2 2 0 0 1-2-2H4zm8 8v3H4V8h12z"/>
-                            </svg>
-                            February 15, 2023
-                        </p>
-                    </div>
-                    <!-- Add more featured posts here -->
-                </div>
-            </nav>
+            <nav class="col-md-3 d-none d-md-block bg-light sidebar" w3-include-html="core/sidemenu.html"></nav>
         </div><!-- /.row -->
     </div><!-- /.container -->
-
     <script src="js/include.js"></script>
-    <!-- Add the Bootstrap JS and Popper.js (required for Bootstrap dropdowns, modals, etc.) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

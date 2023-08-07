@@ -121,3 +121,4 @@ function fetchPostContent(path) {
 }
 
 document.addEventListener('DOMContentLoaded', initialize);
+includeHTML();
