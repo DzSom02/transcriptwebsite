@@ -383,6 +383,10 @@ footer {
   color: #008000; /* Soft green color for person 2 */
 }
 
+.person3 {
+  color: #FF7F50;; /* Coral */
+}
+
 .person-name {
   font-weight: bold;
   margin-right: 5px;
