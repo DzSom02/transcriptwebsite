@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Text-Based Blog</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div id="loadingOverlay" w3-include-html="core/loading.html"></div>
+    <header w3-include-html="core/header.html"></header>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Blog Content -->
+            <main id="blogContent" class="col-md-12">
+                <!-- Hero Section with Carousel -->
+                <section class="hero">
+                    <div id="heroCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" style="max-height: 400px; overflow: hidden;">
+                            <div class="carousel-item active">
+                                <img src="img/monks.jpg" class="d-block w-100" alt="Hero Image 1">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h1>Welcome to My Blog</h1>
+                                    <p>Discover insights, inspiration, and more.</p>
+                                    <a href="/about.html" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/monks.jpg" class="d-block w-100" alt="Hero Image 2">
+                                <div class="carousel-caption">
+                                    <h1>Explore New Ideas</h1>
+                                    <p>Dive into a world of thought-provoking content.</p>
+                                    <a href="/categories.html" class="btn btn-primary">Browse Categories</a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/background.jpg" class="d-block w-100" alt="Hero Image 3">
+                                <div class="carousel-caption">
+                                    <h1>Join the Conversation</h1>
+                                    <p>Share your thoughts and connect with others.</p>
+                                    <a href="/contact.html" class="btn btn-primary">Get in Touch</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Featured Posts Section -->
+                <section class="container mt-5">
+                    <h2 class="text-center">Featured Posts</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="img/background.jpg" class="card-img-top" alt="Featured Post 1">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="#">Sample Post 1</a></h5>
+                                    <p class="card-text">Short summary of the featured post goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <p class="card-text"><small class="text-muted">Posted by John Doe | January 10, 2023</small></p>
+                                    <a href="/posts.html?post=/posts/post1.html" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="img/monks.jpg" class="card-img-top" alt="Featured Post 1">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="#">Sample Post 2</a></h5>
+                                    <p class="card-text">Short summary of another featured post goes here. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                    <p class="card-text"><small class="text-muted">Posted by Jane Smith | February 15, 2023</small></p>
+                                    <a href="/posts.html?post=/posts/post2.html" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="img/background.jpg" class="card-img-top" alt="Featured Post 1">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="#">Sample Post 3</a></h5>
+                                    <p class="card-text">Short summary of yet another featured post goes here. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</p>
+                                    <p class="card-text"><small class="text-muted">Posted by Mark Johnson | March 22, 2023</small></p>
+                                    <a href="/posts.html?post=/posts/post3.html" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more featured posts here -->
+                    </div>
+                </section>
+
+            
+                <!-- About Us Section -->
+                <section class="container mt-5">
+                    <h2 class="text-center">About Us</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="img/background.jpg" alt="Author" class="img-fluid">
+                        </div>
+                        <div class="col-md-6">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod euismod libero, at accumsan dolor ultrices vel.</p>
+                            <p>Meet the team behind the blog and learn about our mission to provide valuable content to our readers.</p>
+                            <a href="#" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Categories Section -->
+                <section class="container mt-5">
+                    <h2 class="text-center">Categories</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <!-- Category 1 -->
+                            <!-- Include category details here -->
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <!-- Category 2 -->
+                            <!-- Include category details here -->
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <!-- Category 3 -->
+                            <!-- Include category details here -->
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Recent Posts Section -->
+                <section class="container mt-5">
+                    <h2 class="text-center">Recent Posts</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <!-- Recent Post 1 -->
+                            <!-- Include post details here -->
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <!-- Recent Post 2 -->
+                            <!-- Include post details here -->
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <!-- Recent Post 3 -->
+                            <!-- Include post details here -->
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Subscribe/Follow Section -->
+                <section class="container mt-5">
+                    <h2 class="text-center">Subscribe / Follow</h2>
+                    <p>Stay updated with our latest articles and news.</p>
+                    <!-- Include subscription/follow options here -->
+                </section>
+            
+                <!-- Testimonials/Reviews Section -->
+                <section class="container mt-5">
+                    <h2 class="text-center">Testimonials</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <!-- Testimonial 1 -->
+                            <!-- Include testimonial details here -->
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <!-- Testimonial 2 -->
+                            <!-- Include testimonial details here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Join our Community Section -->
+                <section id="joinCommunity" class="py-5 bg-light">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <!-- GitHub logo or image -->
+                                <img src="img/github-mark.svg" alt="GitHub Logo" class="img-fluid" style="max-height: 120px;">
+                            </div>
+                            <div class="col-md-9">
+                                <h2 class="display-4">Do you want to collaborate?</h2>
+                                <p class="lead">This is an open-source project, and we welcome contributions from the community. If you're passionate about sharing knowledge and improving the blog experience, you can actively participate by contributing to our GitHub repository.</p>
+                                <a href="https://github.com/your-username/your-blog-repo" class="btn btn-primary">
+                                    <img src="img/github-mark.svg" alt="GitHub Logo" class="mr-2" style="height: 18px;">Contribute on GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Footer -->
+                <footer class="bg-dark text-white text-center py-3">
+                    <div class="container">
+                        <p>&copy; 2023 My Blog. All rights reserved.</p>
+                        <div class="social-icons">
+                            <!-- Include social media icons here -->
+                        </div>
+                    </div>
+                </footer>
+            </main>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <script src="js/include.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
